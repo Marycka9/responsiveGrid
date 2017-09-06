@@ -1,0 +1,371 @@
+/*!
+ * Response Grid System 0.1
+ *
+ * Creator: Mari Lebedeva
+ * Site: http://fluidable.com
+ * Date: 05.09.2017
+ * Create in SASS
+ */
+
+
+// Vars
+
+$columns: 12
+$gutterWidth: 30px
+
+// Column size
+
+$columnWidth: 100% / $columns
+
+// Break-points
+$screenMobile: 576px
+$screenTablet1: 768px
+$screenTablet2: 992px
+$screenDesktop: 1100px  // 1200 normal
+$screenLargeDesktop: $screenDesktop + 1
+
+
+//  ------------------------------------------
+//  Mixins
+//  ------------------------------------------
+
+// Positioning
+
+@mixin center-block
+  margin: 0 auto
+
+// Clearfix
+
+@mixin clear
+  &:after
+    display: table
+    clear: both
+    content: " "
+
+@mixin hidden
+  display: none
+  overflow: hidden
+    
+
+@mixin visible
+  display: block
+  overflow: visible
+
+
+//  ------------------------------------------
+//  Default size
+//  ------------------------------------------
+
+[class*="col-fixed-"]
+  float: left
+  width: 100%
+
+.col-group
+  padding: 0 $gutterWidth
+  @include clear()
+
+.col-group .col-group
+  padding: 0
+
+.col-group [class*="col-"]
+  min-height: 1px
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+
+.col-group [class*="push-"],
+.col-group [class*="pull-"]
+  position: relative
+
+.col-hidden
+  @include hidden()
+
+.col-visible
+  @include visible()
+
+@for $index from 1 through $columns
+  // Columns
+  .col-#{$index}
+    width: $columnWidth * $index
+    float: left
+    padding-right: $gutterWidth / 2
+    padding-left: $gutterWidth / 2
+
+//  ------------------------------------------
+//  Mobile and down
+//  ------------------------------------------
+
+@media (max-width: $screenMobile)
+
+  .container
+    max-width: $screenMobile - ($gutterWidth * 2)
+    padding: $gutterWidth / 2
+    @include center-block()
+
+  .col-xs-hidden
+    @include hidden()
+
+  .col-xs-visible
+    @include visible()
+
+  @for $index from 1 through $columns
+    // Columns
+    .col-xs-#{$index}
+      width: $columnWidth * $index
+      float: left
+      padding-right: $gutterWidth / 2
+      padding-left: $gutterWidth / 2
+
+
+  @for $index from 0 through $columns
+    // Offset
+    .col-xs-offset-#{$index}
+      margin-left: $columnWidth * $index
+    // Pull
+    .col-xs-pull-#{$index}
+      right: $columnWidth * $index
+    // Push
+    .col-xs-push-#{$index}
+      left: $columnWidth * $index
+
+  // Groups
+  .col-group
+    margin-right: $gutterWidth / -2
+    margin-left: $gutterWidth / -2
+    padding: 0
+    @include clear()
+
+//	------------------------------------------
+//	Tablet - 768 and down
+//  ------------------------------------------
+
+@media (max-width: $screenTablet1)
+
+  .container 
+    max-width: $screenTablet1 - ($gutterWidth * 2)
+    @include center-block()
+
+  .col-sm-hidden
+    @include hidden()
+
+  .col-sm-visible
+    @include visible()
+
+  @for $index from 1 through $columns
+    // Columns
+    .col-sm-#{$index}
+      width: $columnWidth * $index
+      float: left
+      padding-right: $gutterWidth / 2
+      padding-left: $gutterWidth / 2
+  
+  
+  @for $index from 0 through $columns
+    // Offset
+    .col-sm-offset-#{$index}
+      margin-left: $columnWidth * $index
+  
+    // Pull
+    .col-sm--pull-#{$index}
+      right: $columnWidth * $index
+
+    // Push
+    .col-sm-push-#{$index}
+      left: $columnWidth * $index
+  
+  // Groups
+  .col-group 
+    margin-right: $gutterWidth / -2
+    margin-left: $gutterWidth / -2
+    padding: 0
+    @include clear()
+
+
+//	------------------------------------------
+//	Tablet - 992 and down
+//  ------------------------------------------
+
+@media (max-width: $screenTablet2)
+
+  .container
+    max-width: $screenTablet2 - ($gutterWidth * 2)
+    padding: $gutterWidth / 2
+    @include center-block()
+
+  .col-md-hidden
+    @include hidden()
+
+  .col-md-visible
+    @include visible()
+
+  @for $index from 1 through $columns
+    // Columns
+    .col-md-#{$index}
+      width: $columnWidth * $index
+      float: left
+      padding-right: $gutterWidth / 2
+      padding-left: $gutterWidth / 2
+
+
+  @for $index from 0 through $columns
+    // Offset
+    .col-md-offset-#{$index}
+      margin-left: $columnWidth * $index
+
+    // Pull
+    .col-md-pull-#{$index}
+      right: $columnWidth * $index
+
+    // Push
+    .col-md-push-#{$index}
+      left: $columnWidth * $index
+
+  // Groups
+  .col-group
+    margin-right: $gutterWidth / -2
+    margin-left: $gutterWidth / -2
+    padding: 0
+    @include clear()
+
+
+
+//	------------------------------------------
+//	Desktop and down
+//  ------------------------------------------
+
+@media (max-width: $screenDesktop)
+
+  .container
+    max-width: $screenDesktop - ($gutterWidth * 2)
+    padding: $gutterWidth / 2
+    @include center-block()
+
+  .col-ls-hidden
+    @include hidden()
+
+  .col-ls-visible
+    @include visible()
+
+  @for $index from 1 through $columns
+    // Columns
+    .col-lg-#{$index}
+      width: $columnWidth * $index
+      float: left
+      padding-right: $gutterWidth / 2
+      padding-left: $gutterWidth / 2
+
+
+  @for $index from 0 through $columns
+    // Offset
+    .col-lg-offset-#{$index}
+      margin-left: $columnWidth * $index
+
+    // Pull
+    .col-lg-pull-#{$index}
+      right: $columnWidth * $index
+
+    // Push
+    .col-lg-push-#{$index}
+      left: $columnWidth * $index
+
+  // Groups
+  .col-group
+    margin-right: $gutterWidth / -2
+    margin-left: $gutterWidth / -2
+    padding: 0
+    @include clear()
+
+//	------------------------------------------
+//	Desktop and up
+//  ------------------------------------------
+
+@media (min-width: $screenLargeDesktop)
+
+  .container
+    max-width: $screenLargeDesktop - ($gutterWidth * 2)
+    padding: $gutterWidth / 2
+    @include center-block()
+
+  .col-xl-hidden
+    @include hidden()
+
+  .col-xl-visible
+    @include visible()
+
+  @for $index from 1 through $columns
+    // Columns
+    .col-xl-#{$index}
+      width: $columnWidth * $index
+      float: left
+      padding-right: $gutterWidth / 2
+      padding-left: $gutterWidth / 2
+
+
+  @for $index from 0 through $columns
+    // Offset
+    .col-xl-offset-#{$index}
+      margin-left: $columnWidth * $index
+
+    // Pull
+    .col-xl-pull-#{$index}
+      right: $columnWidth * $index
+
+    // Push
+    .col-xl-push-#{$index}
+      left: $columnWidth * $index
+
+  // Groups
+  .col-group
+    margin-right: $gutterWidth / -2
+    margin-left: $gutterWidth / -2
+    padding: 0
+    @include clear()
+
+
+
+//  ------------------------------------------
+//	Fixed aspect ratio columns
+//  ------------------------------------------
+
+.col-fixed-hd,
+.col-fixed-landscape,
+.col-fixed-square,
+.col-fixed-portrait
+  position: relative
+
+
+.col-fixed-hd:before,
+.col-fixed-landscape:before,
+.col-fixed-square:before,
+.col-fixed-portrait:before
+  content: ""
+  display: block
+
+
+.col-fixed-hd .col-content,
+.col-fixed-landscape .col-content,
+.col-fixed-square .col-content,
+.col-fixed-portrait .col-content
+  position: absolute
+  top: 0
+  right: $gutterWidth / 2
+  bottom: 0
+  left: $gutterWidth / 2
+  padding: 0
+
+
+.col-fixed-hd:before
+  margin-top: 56.25%
+
+
+.col-fixed-landscape:before
+  margin-top: 75%
+
+
+.col-fixed-square:before
+  margin-top: 100%
+
+.col-fixed-portrait:before
+  margin-top: 133.33333333%
+
+    
